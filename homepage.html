@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kids Bookstore</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f0f8ff; /* Light background for a cheerful look */
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Playful font */
+    }
+
+    .navbar-section {
+      display: flex;
+      align-items: center; 
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: #ff6f61; /* Bright coral color */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+    }
+
+    .logo {
+      font-size: 2rem; 
+      font-weight: bold;
+      color: white; 
+    }
+
+    .navbar {
+      display: none; 
+      flex-direction: column; 
+      position: fixed; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      list-style: none;
+      padding-left: 0;
+      z-index: 1000; 
+      padding: 20px; 
+      border-radius: 8px; 
+      background-color: white; 
+      animation: slideIn 0.5s forwards; /* Apply slideIn animation */
+    }
+
+    .nav-item {
+      list-style-type: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #333; 
+      padding: 15px 0; 
+      transition: color 0.3s; 
+      font-size: 1.2rem; /* Increased font size for better readability */
+    }
+
+    .nav-link:hover {
+      color: #ff6f61; 
+    }
+
+    @media (min-width: 768px) {
+      .navbar {
+        display: flex; 
+        position: static; 
+        transform: none; 
+        flex-direction: row; 
+        justify-content: flex-end; 
+        margin-top: 0;
+        gap: 30px; 
+      }
+    }
+
+    .hamburger {
+      display: flex;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 40px; 
+      height: 30px; 
+      background: transparent; 
+      border: none; 
+      outline: none; 
+      padding: 0; 
+      transition: all 0.3s ease; 
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 4px; 
+      background-color: white; /* Changed to white for better visibility */
+      border-radius: 2px; 
+      transition: all 0.3s ease; 
+    }
+
+    .hamburger:hover div {
+      background-color: #ffb84d; /* A fun hover color */
+    }
+
+    @media (min-width: 768px) {
+      .hamburger {
+        display: none; 
+      }
+    }
+
+    .image-section {
+      background-image: url('images/kids_books_background.jpg'); /* Suggest using a colorful kids' books background image */
+      background-size: cover; 
+      background-position: center; 
+      height: 70vh; 
+      margin-top: 30px;
+      border-radius: 15px; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+      animation: fadeIn 1s forwards; /* Apply fadeIn animation */
+    }
+
+    .content-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; 
+      align-items: center; 
+      padding: 20px; 
+      height: 50vh; 
+      background-color: rgba(255, 255, 255, 0.9); 
+      border-radius: 15px; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    }
+
+    .header {
+      font-size: 2.5rem; 
+      font-weight: bold; 
+      margin-bottom: 20px; 
+      color: #333; 
+    }
+
+    .button {
+      background-color: #ff6f61; 
+      color: white; 
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+      width: 200px;
+      margin-top: 20px; 
+      font-size: 1.1rem; 
+    }
+
+    .button:hover {
+      background-color: #c74a29; 
+      transform: scale(1.1); /* Scale up on hover */
+    }
+
+    .card {
+      width: 250px; 
+      height: 250px; 
+      border-radius: 15px; 
+      overflow: hidden; 
+      margin: 10px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+      animation: fadeIn 0.5s forwards; /* Apply fadeIn animation */
+      opacity: 0; /* Initially hidden */
+    }
+
+    .card img {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+    }
+
+    .card:hover {
+      transform: scale(1.05); 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); 
+    }
+
+    .video-section {
+      margin-top: 50px;
+      padding: 20px;
+    }
+
+    .video {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #ff6f61; /* Footer background color */
+      color: white; 
+      padding: 20px 0; 
+      text-align: center; 
+      position: relative; 
+      bottom: 0; 
+      width: 100%; 
+    }
+
+    footer a {
+      color: white; 
+      text-decoration: none; 
+      margin: 0 10px; 
+    }
+
+    footer a:hover {
+      text-decoration: underline; 
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="row navbar-section">
+    <div class="col logo">
+    Kids Bookstore
+    </div>
+    <div class="col d-flex justify-content-end align-items-center">
+      <button class="hamburger d-block d-md-none" onclick="toggleNavbar()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+      <ul class="navbar">
+        <li class="nav-item"><a href="homepage.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link">Books</a></li>
+        <li class="nav-item"><a href="cobtactus.html" class="nav-link">Contact us</a></li>
+        <li class="nav-item"><a href="aboutus.html" class="nav-link">About us</a></li>
+        <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+        <li class="nav-item"><a href="signup.php" class="nav-link">Sign up</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-left: 20px; margin-right: 20px;" class="row">
+    <div class="col-md-6 col-lg-6 image-section"></div>
+    <div class="col-md-6 col-lg-6 content-section">
+      <div style="text-align: center;" class="header">Welcome to Our Kids' Bookstore!</div>
+      <button class="button">Browse Books</button> <br>
+    </div>
+  </div>
+
+  <div class="row text-center" style="margin-top: 50px;">
+    <div class="col-12">
+      <h2 class="header">Our Services</h2> 
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 1"> 
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 2"> 
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 3"> 
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-center" style="margin-top: 50px;">
+    <div class="col-12">
+      <h2 class="header">Our Shop</h2> 
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 1"> 
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 2"> 
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 d-flex justify-content-center">
+      <div class="card">
+        <img src="https://via.placeholder.com/250" alt="Book Image 3"> 
+      </div>
+    </div>
+  </div>
+
+  <div class="row video-section">
+    <div class="col-md-6 col-lg-6">
+      <iframe class="video" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="col-md-6 col-lg-6 info-section">
+      <h3>About Our Books</h3>
+      <p>Discover a world of adventure and imagination with our collection of kids' books! From picture books to chapter books, we have something for every young reader.</p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Kids Bookstore. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </footer>
+</div>
+
+<script>
+  function toggleNavbar() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar.style.display === 'flex') {
+      navbar.style.animation = 'slideOut 0.5s forwards'; // Apply slideOut animation
+      setTimeout(() => {
+        navbar.style.display = 'none'; // Hide after animation
+      }, 500);
+    } else {
+      navbar.style.display = 'flex';
+      navbar.style.animation = 'slideIn 0.5s forwards'; // Apply slideIn animation
+    }
+  }
+
+  // Add fade-in effect for cards
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.style.opacity = 1; // Make card visible
+    }, index * 300); // Delay for each card
+  });
+</script>
+
+</body>
+</html

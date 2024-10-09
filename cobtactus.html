@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Kids Bookstore</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f0f8ff; /* Light background for a cheerful look */
+      font-family: 'Comic Sans MS', cursive, sans-serif; /* Playful font */
+    }
+
+    .navbar-section {
+        display: flex;
+        align-items: center; 
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #ff6f61; /* Bright coral color */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+      }
+  
+      .logo {
+        font-size: 2rem; 
+        font-weight: bold;
+        color: white; 
+      }
+  
+      .navbar {
+        display: none; 
+        flex-direction: column; 
+        position: fixed; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        list-style: none;
+        padding-left: 0;
+        z-index: 1000; 
+        padding: 20px; 
+        border-radius: 8px; 
+        background-color: white; 
+        animation: slideIn 0.5s forwards; /* Apply slideIn animation */
+      }
+  
+      .nav-item {
+        list-style-type: none;
+      }
+  
+      .nav-link {
+        text-decoration: none;
+        color: #333; 
+        padding: 15px 0; 
+        transition: color 0.3s; 
+        font-size: 1.2rem; /* Increased font size for better readability */
+      }
+  
+      .nav-link:hover {
+        color: #ff6f61; 
+      }
+  
+      @media (min-width: 768px) {
+        .navbar {
+          display: flex; 
+          position: static; 
+          transform: none; 
+          flex-direction: row; 
+          justify-content: flex-end; 
+          margin-top: 0;
+          gap: 30px; 
+        }
+      }
+  
+      .hamburger {
+        display: flex;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px; 
+        height: 30px; 
+        background: transparent; 
+        border: none; 
+        outline: none; 
+        padding: 0; 
+        transition: all 0.3s ease; 
+      }
+  
+      .hamburger div {
+        width: 100%;
+        height: 4px; 
+        background-color: white; /* Changed to white for better visibility */
+        border-radius: 2px; 
+        transition: all 0.3s ease; 
+      }
+  
+      .hamburger:hover div {
+        background-color: #ffb84d; /* A fun hover color */
+      }
+  
+      @media (min-width: 768px) {
+        .hamburger {
+          display: none; 
+        }
+      }
+
+    .header {
+      font-size: 2.5rem; 
+      font-weight: bold; 
+      margin-bottom: 20px; 
+      color: #333; 
+      text-align: center; 
+    }
+
+    .contact-form {
+      background-color: rgba(255, 255, 255, 0.9); 
+      padding: 20px; 
+      border-radius: 15px; 
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+    }
+
+    .button {
+      background-color: #ff6f61; 
+      color: white; 
+      padding: 10px 20px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition */
+      margin-top: 10px; 
+    }
+
+    .button:hover {
+      background-color: #c74a29; 
+      transform: scale(1.05); /* Scale up on hover */
+    }
+
+    footer {
+      background-color: #ff6f61; /* Footer background color */
+      color: white; 
+      padding: 20px 0; 
+      text-align: center; 
+      position: relative; 
+      bottom: 0; 
+      width: 100%; 
+    }
+
+    footer a {
+      color: white; 
+      text-decoration: none; 
+      margin: 0 10px; 
+    }
+
+    footer a:hover {
+      text-decoration: underline; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row navbar-section">
+      <div class="col logo">
+      Kids Bookstore
+      </div>
+      <div class="col d-flex justify-content-end align-items-center">
+        <button class="hamburger d-block d-md-none" onclick="toggleNavbar()">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
+        <ul class="navbar">
+          <li class="nav-item"><a href="homepage.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="shop.html" class="nav-link">Books</a></li>
+          <li class="nav-item"><a href="cobtactus.html" class="nav-link">Contact us</a></li>
+          <li class="nav-item"><a href="aboutus.html" class="nav-link">About us</a></li>
+          <li class="nav-item"><a href="login.php" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="signup.php" class="nav-link">Sign up</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="header">Contact Us</h2>
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="button">Send Message</button>
+        </form>
+      </div>
+      
+      <h3 class="header" style="margin-top: 30px;">Contact Information</h3>
+      <p><strong>Phone:</strong> +971000000000</p>
+      <p><strong>Email:</strong> info@kidsbookstore.com</p>
+      <p><strong>Address:</strong> UAE </p>
+      
+      <h3 class="header" style="margin-top: 30px;">Find Us Here</h3>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.9290342034404!2d-122.40801318468102!3d37.78583497975892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809b1b8f6d59%3A0x8371c1de6ee2c27d!2s123%20Story%20Lane%2C%20Booktown%2C%20BK%2012345!5e0!3m2!1sen!2sus!4v1601234567890!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Kids Bookstore. All rights reserved.</p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">Contact Us</a>
+  </footer>
+</div>
+
+<script>
+  // Optional: Add JavaScript to handle form submission (e.g., sending data to a server)
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    // Here you could add code to send form data to your server
+    alert('Message sent! Thank you for contacting us.');
+    this.reset(); // Reset the form after submission
+  });
+  function toggleNavbar() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar.style.display === 'flex') {
+      navbar.style.animation = 'slideOut 0.5s forwards'; // Apply slideOut animation
+      setTimeout(() => {
+        navbar.style.display = 'none'; // Hide after animation
+      }, 500);
+    } else {
+      navbar.style.display = 'flex';
+      navbar.style.animation = 'slideIn 0.5s forwards'; // Apply slideIn animation
+    }
+  }
+</script>
+
+</body>
+</html>
